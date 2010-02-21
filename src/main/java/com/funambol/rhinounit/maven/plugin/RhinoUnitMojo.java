@@ -18,11 +18,11 @@
  */
 package com.funambol.rhinounit.maven.plugin;
 
+import com.funambol.rhinounit.RhinoUnitLoader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,17 +47,6 @@ import org.codehaus.plexus.util.DirectoryScanner;
  * @author Stefano Fornari
  */
 public class RhinoUnitMojo extends AbstractMojo {
-    private static final String[] SCRIPTS = new String[] {
-        "/js/jsUnitCore.js",
-        "/js/xbDebug.js",
-        "/js/jsUnitResult.js",
-        "/js/jsUnitResultWriter.js",
-        "/js/jsUnitTestManager.js",
-        "/js/jsUnitTestSuite.js",
-        "/js/jsUnitTracer.js",
-        "/js/jsUnitRunner.js"
-    };
-
     public static final String DEFAULT_NAME_OF_PROJECT_PROPERTY = "project";
 
     /**
@@ -164,25 +153,13 @@ public class RhinoUnitMojo extends AbstractMojo {
      * @throws MojoExecutionException if script cannot be loaded or executed.
      */
     public void execute() throws MojoExecutionException {
-        InputStream is = null;
-        try {
-            for (String s: SCRIPTS) {
-                is = getClass().getResourceAsStream(s);
-                if (is == null) {
-                    throw new MojoExecutionException("Resource " + s + " not found in classpath");
-                }
-                getEngine("js").eval(new InputStreamReader(is));
-                is.close(); is = null;
-            }
 
+        try {
+            getEngine("js").eval(RhinoUnitLoader.getRhinoUnit());
             executeScripts();
             executeInlineScript();
             executeTestSuites();
         } catch (Throwable t) {
-            if (is != null) {
-                try {is.close();} catch (IOException e) {}
-                is = null;
-            }
             
             if (t instanceof MojoExecutionException) {
                 throw (MojoExecutionException)t;
