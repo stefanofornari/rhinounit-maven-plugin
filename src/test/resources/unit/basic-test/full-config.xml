@@ -1,0 +1,22 @@
+<project>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>rhinounit-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <language>js</language>
+                    <passProjectAsProperty>true</passProjectAsProperty>
+                    <script>var testValue=project.scriptSourceRoots;</script>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
