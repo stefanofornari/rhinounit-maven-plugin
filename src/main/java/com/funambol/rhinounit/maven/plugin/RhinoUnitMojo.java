@@ -190,6 +190,10 @@ public class RhinoUnitMojo extends AbstractMojo {
         }
 
         for (Object d : project.getScriptSourceRoots()) {
+            System.out.println("ScriptSourceRoute: " + d);
+            if (getLog().isDebugEnabled()) {
+                getLog().debug("ScriptSourceRoute: " + d);
+            }
             if (!new File((String) d).isDirectory()) {
                 if (getLog().isWarnEnabled()) {
                     getLog().warn("Script directory " + d + " not found, ignoring.");

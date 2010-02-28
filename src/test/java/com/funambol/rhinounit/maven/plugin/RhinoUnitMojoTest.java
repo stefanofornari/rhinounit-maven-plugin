@@ -52,7 +52,7 @@ public class RhinoUnitMojoTest extends AbstractMojoTestCase {
             Arrays.asList(new String[] {"target/test-classes/scripts"})
         );
         project.setTestCompileSourceRoots(
-            Arrays.asList(new String[] {"target/test-classes/js"})
+            Arrays.asList(new String[] {"src/test/scripts"})
         );
 
         try {
@@ -87,7 +87,7 @@ public class RhinoUnitMojoTest extends AbstractMojoTestCase {
         ScriptEngine engine = mojo.getEngine("js");
         assertNotNull(engine);
 
-        assertEquals("testsuite1.js", engine.eval("runner.getLatestExecutedSuite();"));
+        assertEquals("testsuite2.js", engine.eval("runner.getLatestExecutedSuite();"));
     }
 
 
