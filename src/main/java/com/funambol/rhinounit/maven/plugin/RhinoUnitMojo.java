@@ -34,7 +34,6 @@ import org.apache.maven.plugin.AbstractMojo;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.mojo.script.EngineNotFoundException;
 import org.codehaus.plexus.util.DirectoryScanner;
 
 /**

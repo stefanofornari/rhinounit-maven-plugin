@@ -22,11 +22,9 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
-import org.codehaus.mojo.script.ScriptMojo;
 
 
 /**
