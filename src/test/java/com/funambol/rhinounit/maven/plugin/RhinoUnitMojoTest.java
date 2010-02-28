@@ -51,16 +51,14 @@ public class RhinoUnitMojoTest extends AbstractMojoTestCase {
         project.setScriptSourceRoots(
             Arrays.asList(new String[] {"target/test-classes/scripts"})
         );
-        project.setTestCompileSourceRoots(
-            Arrays.asList(new String[] {"src/test/scripts"})
-        );
-
         try {
             Field f = RhinoUnitMojo.class.getDeclaredField("project");
-
             f.setAccessible(true);
-
             f.set(mojo, project);
+
+            f = RhinoUnitMojo.class.getDeclaredField("testSourceDirectory");
+            f.setAccessible(true);
+            f.set(mojo, "src/test/scripts");
         } catch (NoSuchFieldException e) {
             // if there is not the project property, never mind...
         }

@@ -79,6 +79,13 @@ public class RhinoUnitMojo extends AbstractMojo {
     private String nameOfProjectProperty;
 
     /**
+     * The test source directory containing test scripts
+     *
+     * @parameter expression="${project.build.testSourceDirectory}"
+     */
+    private String testSourceDirectory;
+
+    /**
      * Optional extension of language fo the inline script if given.
      *
      * @parameter
@@ -190,7 +197,6 @@ public class RhinoUnitMojo extends AbstractMojo {
         }
 
         for (Object d : project.getScriptSourceRoots()) {
-            System.out.println("ScriptSourceRoute: " + d);
             if (getLog().isDebugEnabled()) {
                 getLog().debug("ScriptSourceRoute: " + d);
             }
@@ -210,6 +216,10 @@ public class RhinoUnitMojo extends AbstractMojo {
 
         for (String fileName : scriptFileNames) {
             String extension = FilenameUtils.getExtension(fileName);
+
+            if (getLog().isDebugEnabled()) {
+                getLog().debug("Evaluating " + fileName);
+            }
 
             try {
                 getEngine(extension).eval(new FileReader(fileName));
@@ -251,9 +261,12 @@ public class RhinoUnitMojo extends AbstractMojo {
     throws EngineNotFoundException, ScriptException {
         final StringBuffer runnerScript =
             new StringBuffer("var runner = new jsUnitRunner('");
+
+        if (getLog().isDebugEnabled()) {
+            getLog().debug("testSourceDirectory: " + testSourceDirectory);
+        }
         
-        runnerScript.append(project.getTestCompileSourceRoots().get(0))
-                    .append("'); runner.run();");
+        runnerScript.append(testSourceDirectory).append("'); runner.run();");
 
         ScriptEngine engine = getEngine("js");
         engine.eval(runnerScript.toString());
