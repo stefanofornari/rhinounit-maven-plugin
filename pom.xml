@@ -3,7 +3,7 @@
     <groupId>funambol</groupId>
     <artifactId>rhinounit-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <name>rhinounit-maven-plugin Maven Mojo</name>
     <url>http://maven.apache.org</url>
 
