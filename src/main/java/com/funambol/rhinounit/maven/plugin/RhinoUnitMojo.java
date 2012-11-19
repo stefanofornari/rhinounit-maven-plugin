@@ -37,7 +37,7 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.DirectoryScanner;
 
 /**
- * A Maven 2 plugin to unit test javascript standalon programs
+ * A Maven 2 plugin to unit test javascript standalone programs
  *
  * @goal test
  * @phase test
@@ -86,7 +86,7 @@ public class RhinoUnitMojo extends AbstractMojo {
     private String testSourceDirectory;
 
     /**
-     * Optional extension of language fo the inline script if given.
+     * Optional extension of language for the inline script if given.
      *
      * @parameter
      */
@@ -181,7 +181,7 @@ public class RhinoUnitMojo extends AbstractMojo {
      * Executes the scripts in the script directory. Includes and excludes
      * patterns are used to filter the scripts to execute.
      *
-     * @throws ScriptException if there is an error in the execution of a scripts
+     * @throws ScriptException if there is an error in the execution of a script
      */
     private void executeScripts() throws ScriptException, IOException {
         ArrayList<String> scriptFileNames = new ArrayList<String>();
