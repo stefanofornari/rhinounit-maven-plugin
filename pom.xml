@@ -11,7 +11,7 @@
         <connection>scm:git:git://github.com/stefanofornari/rhinounit-maven-plugin</connection>
         <url> http://github.com/stefanofornari/rhinounit-maven-plugin/tree/master</url>
     </scm>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -30,9 +30,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>funambol</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>rhinounit</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
